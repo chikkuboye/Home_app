@@ -35,6 +35,12 @@ while(True):
         print(tabulate(result,headers=['temp','humidity','moisture','date','sensor_values'],tablefmt="psql"))
 
     elif(choice==3):
-        print("Search the data using the date")
+        print("Search the data using the date ")
+        date = input("enter the date : ")
+        sql = "SELECT `temp`, `humidity`, `moisture`, `date`, `sensor_values` FROM `home_automation` WHERE `date`='"+date+"'"
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        print(tabulate(result,headers=['temp','humidity','moisture','date','sensor_values'],tablefmt="psql"))
+
     elif(choice==4):
         break
