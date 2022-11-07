@@ -1,4 +1,5 @@
 import mysql.connector
+from tabulate import tabulate
 
 mydb = mysql.connector.connect(host = 'localhost' , user = 'root' , password = '' , database = 'home_db')
 
@@ -27,6 +28,12 @@ while(True):
         mydb.commit()
     elif(choice==2):
         print('View the data')
+        sql = "SELECT `temp`, `humidity`, `moisture`, `date`, `sensor_values` FROM `home_automation`"
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        #print(tabulate(result,headers=['amount'],tablefmt = "psql"))
+        print(tabulate(result,headers=['temp','humidity','moisture','date','sensor_values'],tablefmt="psql"))
+
     elif(choice==3):
         print("Search the data using the date")
     elif(choice==4):
